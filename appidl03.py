@@ -11,13 +11,24 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 #Titulo de la app
 st.title("Registro de comprobantes de pago - SUNAT")
 
-
-st.header("Ingresa los datos del comprobante de pago")
+#Solicitar los datos del comprobante de pagos"
+st.header("Datos del comprobante de pago")
 
 fecha_emision = st.date_input("Fecha de emisión")
 tipo = st.selectbox("Tipo",["Factura","Boleta","ReciboxHonorarios","Otros"])
 serie = st.text_input("Serie")
-numero = st.text_input("Número")
+numero = st.number_input("Número")
 monto = st.number_input("Monto total")
 ruc = st.text_input("RUC", max_chars=11)
-concepto = st.text_area("Descrición")
+concepto = st.text_area("Descripción")
+
+"Subir la información a la tabla en Supabase"
+if st.button("Registrar Comprobante"):
+    if fecha_emision and tipo and serie and numero and monto and ruc and concepto:
+        data = {
+            "fecha_emision":fecha_emision.strftime("%Y-%m-%d"), "tipo": tipo, "serie":serie, "numero":numero, "ruc":ruc, "concepto":concepto
+        }
+        supabase.table("comprobantes").insert(data).execute()
+        st.success("Comprobante registrado con éxito")
+    else:
+        st.warning("Todos los campos son obligatorios")
