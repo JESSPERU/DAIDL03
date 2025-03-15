@@ -17,7 +17,7 @@ st.header("Datos del comprobante de pago")
 fecha_emision = st.date_input("Fecha de emisión")
 tipo = st.selectbox("Tipo",["Factura","Boleta","ReciboxHonorarios","Otros"])
 serie = st.text_input("Serie")
-numero = st.number_input("Número")
+numero = st.text_input("Número")
 monto = st.number_input("Monto total")
 ruc = st.text_input("RUC", max_chars=11)
 concepto = st.text_area("Descripción")
@@ -30,5 +30,6 @@ if st.button("Registrar Comprobante"):
         }
         supabase.table("comprobantes").insert(data).execute()
         st.success("Comprobante registrado con éxito")
+        st.rerun()
     else:
         st.warning("Todos los campos son obligatorios")
