@@ -29,7 +29,8 @@ if st.button("Registrar Comprobante"):
             "fecha_emision":fecha_emision.strftime("%Y-%m-%d"), 
             "tipo": tipo, 
             "serie":serie, 
-            "numero":numero, 
+            "numero":numero,
+            "monto":monto, 
             "ruc":ruc, 
             "concepto":concepto
         }
