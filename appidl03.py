@@ -10,7 +10,7 @@ SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 #Titulo de la app
-st.title("📄Registro de comprobantes de pago - SUNAT")
+st.markdown("<h1 style='color: #FF5733; text-align: center;'>📄 Registro de Comprobantes de Pago - SUNAT</h1>", unsafe_allow_html=True)
 
 #CREATE
 #Solicitar los datos del comprobante de pagos" 
@@ -46,16 +46,16 @@ if st.button("✍️Registrar Comprobante"):
 #READ
 # MOSTRAR COMPROBANTES REGISTRADO
 
-st.header("🔍Mostrar los comprobantes de pago registrados")
+st.header("Mostrar los comprobantes de pago registrados")
 comprobantes = supabase.table("comprobantes").select("*").execute()
 
 if comprobantes.data:
     for cdp in comprobantes.data:
-        with st.expander(f"🗂️{cdp['tipo']} {cdp['serie']} - {cdp['numero']} "):
-            st.write(f"📆Fecha:{cdp['fecha_emision']}")
-            st.write(f"💵Monto:S/{cdp['monto']}")
-            st.write(f"🏪RUC:{cdp['ruc']}")
-            st.write(f"🖊️Descripción:{cdp['concepto']}")
+        with st.expander(f"🗂️ {cdp['tipo']} {cdp['serie']} - {cdp['numero']} "):
+            st.write(f"📆Fecha: {cdp['fecha_emision']}")
+            st.write(f"💵Monto: S/{cdp['monto']}")
+            st.write(f"🏪RUC: {cdp['ruc']}")
+            st.write(f"🖊️Descripción: {cdp['concepto']}")
 
             #DELETE
             # Botón para eliminar comprobante
