@@ -63,7 +63,7 @@ comprobantes_pagina = comprobantes.data[inicio:fin]  # Filtrar comprobantes
 
 if comprobantes_pagina:
     for cdp in comprobantes_pagina:
-        with st.expander(f" - {cdp['tipo']} {cdp['serie']} - {cdp['numero']} "):
+        with st.expander(f"🔸{cdp['tipo']} {cdp['serie']} - {cdp['numero']} "):
             st.write(f"📆Fecha: {cdp['fecha_emision']}")
             st.write(f"💵Monto: S/{cdp['monto']}")
             st.write(f"🏪RUC: {cdp['ruc']}")
