@@ -1,5 +1,6 @@
 import streamlit as st
 from supabase import create_client, Client
+import time 
 
 # Cargar variables de entorno
 SUPABASE_URL =  "https://pipplgjnsnycifhnrahr.supabase.co"
@@ -36,6 +37,7 @@ if st.button("Registrar Comprobante"):
         }
         supabase.table("comprobantes").insert(data).execute()
         st.success("Comprobante registrado con éxito")
+        time.sleep(2)
         st.rerun()
     else:
         st.warning("Todos los campos son obligatorios")
