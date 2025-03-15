@@ -15,7 +15,7 @@ st.title("Registro de comprobantes de pago - SUNAT")
 st.header("Datos del comprobante de pago")
 
 fecha_emision = st.date_input("Fecha de emisión")
-tipo = st.selectbox("Tipo",["Factura","Boleta","ReciboxHonorarios","Otros"])
+tipo = st.selectbox("Tipo",["Factura","Boleta","Recibo","Otros"])
 serie = st.text_input("Serie")
 numero = st.text_input("Número")
 monto = st.number_input("Monto total")
@@ -26,12 +26,12 @@ concepto = st.text_area("Descripción")
 if st.button("Registrar Comprobante"):
     if fecha_emision and tipo and serie and numero and monto and ruc and concepto:
         data = {
-            "fecha_emision":fecha_emision.strftime("%Y-%m-%d"), 
+            "fecha_emision": fecha_emision.isoformat(), 
             "tipo": tipo, 
             "serie":serie, 
             "numero":numero,
-            "monto":monto, 
-            "ruc":ruc, 
+            "monto":float(monto), 
+            "ruc":ruc.strip(), 
             "concepto":concepto
         }
         supabase.table("comprobantes").insert(data).execute()
