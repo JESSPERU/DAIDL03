@@ -85,3 +85,17 @@ if comprobantes.data:
                 st.rerun()
 else:
     st.info("🚫No hay comprobantes registrados aún")
+
+
+# CSS para cambiar el fondo
+st.markdown(
+    """
+    <style>
+        /* Fondo de toda la app */
+        body {
+            background-color: #F5F5DC; /* Beige */
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
