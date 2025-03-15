@@ -57,9 +57,30 @@ if comprobantes.data:
             st.write(f"RUC:{cdp['ruc']}")
             st.write(f"Descripción:{cdp['concepto']}")
 
+            #DELETE
             # Botón para eliminar comprobante
             if st.button(f"Eliminar comprobante", key=f"del_{cdp['id']}"):
                 supabase.table("comprobantes").delete().eq("id", cdp['id']).execute()
                 st.success(f"Comprobante {cdp['serie']}-{cdp['numero']} eliminado correctamente")
                 time.sleep(2)
                 st.rerun()
+
+            #UPDATE
+            # Formulario para actualizar datos del comprobante
+            st.subheader("Actualizar datos del comprobante")
+            nuevo_tipo = st.selectbox("Nuevo Tipo", ["Factura", "Boleta", "Recibo", "Otros"], index=["Factura", "Boleta", "Recibo", "Otros"].index(cdp["tipo"]), key=f"tipo_{cdp['id']}")
+            nuevo_monto = st.number_input("Nuevo Monto", value=cdp["monto"], key=f"monto_{cdp['id']}")
+            nuevo_concepto = st.text_area("Nuevo Concepto", value=cdp["concepto"], key=f"concepto_{cdp['id']}")
+            
+            # Botón para guardar cambios
+            if st.button("Guardar Cambios", key=f"upd_{cdp['id']}"):
+                supabase.table("comprobantes").update({
+                    "tipo": nuevo_tipo,
+                    "monto": nuevo_monto,
+                    "concepto": nuevo_concepto
+                }).eq("id", cdp["id"]).execute()
+                st.success(" Comprobante actualizado")
+                time.sleep(2)
+                st.rerun()
+else:
+    st.info("No hay comprobantes registrados aún")
