@@ -26,7 +26,12 @@ concepto = st.text_area("Descripción")
 if st.button("Registrar Comprobante"):
     if fecha_emision and tipo and serie and numero and monto and ruc and concepto:
         data = {
-            "fecha_emision":fecha_emision.strftime("%Y-%m-%d"), "tipo": tipo, "serie":serie, "numero":numero, "ruc":ruc, "concepto":concepto
+            "fecha_emision":fecha_emision.strftime("%Y-%m-%d"), 
+            "tipo": tipo, 
+            "serie":serie, 
+            "numero":numero, 
+            "ruc":ruc, 
+            "concepto":concepto
         }
         supabase.table("comprobantes").insert(data).execute()
         st.success("Comprobante registrado con éxito")
