@@ -10,8 +10,8 @@ SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 #Titulo de la app y logo
-st.image("Logo Sunat.png", width=150)
-st.markdown("<h1 style='color: #2511bc; text-align: center;'>📄 Registro de Comprobantes de Pago</h1>", unsafe_allow_html=True)
+st.image("Logo Sunat.png", width=140)
+st.markdown("<h1 style='color: #000090; text-align: center;'> Registro de Comprobantes de Pago</h1>", unsafe_allow_html=True)
 
 #CREATE
 #Solicitar los datos del comprobante de pagos" 
